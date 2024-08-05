@@ -3,6 +3,7 @@ package me.kcj.user.service;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import me.kcj.user.*;
+import me.kcj.user.service.handler.StockTradeRequestHandler;
 import me.kcj.user.service.handler.UserInformationHandler;
 import net.devh.boot.grpc.server.service.GrpcService;
 
@@ -11,6 +12,7 @@ import net.devh.boot.grpc.server.service.GrpcService;
 public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     private final UserInformationHandler userInformationHandler;
+    private final StockTradeRequestHandler stockTradeRequestHandler;
 
     @Override
     public void getUserInformation(UserInformationRequest request, StreamObserver<UserInformation> responseObserver) {
@@ -21,5 +23,10 @@ public class UserService extends UserServiceGrpc.UserServiceImplBase {
 
     @Override
     public void tradeStock(StockTradeRequest request, StreamObserver<StockTradeResponse> responseObserver) {
+        var response = TradeAction.SELL.equals(request.getAction()) ?
+                stockTradeRequestHandler.sellStock(request) :
+                stockTradeRequestHandler.buyStock(request);
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
     }
 }
