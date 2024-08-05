@@ -5,10 +5,11 @@ import me.kcj.user.exceptions.InsufficientBalanceException;
 import me.kcj.user.exceptions.InsufficientSharesException;
 import me.kcj.user.exceptions.UnknownTickerException;
 import me.kcj.user.exceptions.UnknownUserException;
+import net.devh.boot.grpc.server.advice.GrpcAdvice;
 import net.devh.boot.grpc.server.advice.GrpcExceptionHandler;
 import net.devh.boot.grpc.server.service.GrpcService;
 
-@GrpcService
+@GrpcAdvice
 public class ServiceExceptionHandler {
 
     @GrpcExceptionHandler(UnknownTickerException.class)
