@@ -8,6 +8,9 @@ import me.kcj.user.service.handler.StockTradeRequestHandler;
 import me.kcj.user.service.handler.UserInformationHandler;
 import net.devh.boot.grpc.server.service.GrpcService;
 
+/**
+ * Acts as a controller
+ */
 @GrpcService
 @RequiredArgsConstructor
 @Slf4j
