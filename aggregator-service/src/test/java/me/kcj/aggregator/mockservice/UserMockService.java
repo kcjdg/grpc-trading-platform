@@ -4,6 +4,9 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import me.kcj.user.*;
 
+/**
+ * Can have multiple scenarios of testing
+ */
 public class UserMockService extends UserServiceGrpc.UserServiceImplBase {
 
 
